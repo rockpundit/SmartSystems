@@ -37,8 +37,51 @@ if (form) {
 }
 
 // Animate on scroll (AOS)
-document.addEventListener('DOMContentLoaded', function() {
-  if (window.AOS) {
-    AOS.init({ duration: 800, once: true });
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
   }
-}); 
+});
+
+window.onload = () => {
+  const splashScreen = document.getElementById('splash-screen');
+  const splashLogo = document.getElementById('splash-logo');
+  const headerLogo = document.getElementById('header-logo');
+  const mainContent = document.querySelector('body > main');
+
+  if (!splashScreen || !splashLogo || !headerLogo) {
+    if (splashScreen) {
+      splashScreen.style.display = 'none';
+    }
+    if (headerLogo) {
+      headerLogo.style.opacity = 1;
+    }
+    return;
+  }
+
+  const destination = headerLogo.getBoundingClientRect();
+  const start = splashLogo.getBoundingClientRect();
+
+  splashLogo.style.top = `${start.top}px`;
+  splashLogo.style.left = `${start.left}px`;
+  splashLogo.style.width = `${start.width}px`;
+
+  setTimeout(() => {
+    splashLogo.style.width = `${destination.width}px`;
+    splashLogo.style.top = `${destination.top}px`;
+    splashLogo.style.left = `${destination.left}px`;
+  }, 100);
+
+  splashLogo.addEventListener('transitionend', () => {
+    headerLogo.style.opacity = '1';
+    splashScreen.style.opacity = '0';
+    splashScreen.addEventListener('transitionend', () => {
+      splashScreen.style.display = 'none';
+    });
+  }, { once: true });
+}; 

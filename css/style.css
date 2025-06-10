@@ -448,4 +448,32 @@ section:first-of-type {
     min-width: 0;
     flex-wrap: wrap;
   }
+}
+
+/* Splash Screen Animation */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--navy);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#splash-logo {
+  width: 80vw;
+  max-width: 400px;
+  height: auto;
+  position: absolute;
+  transition: width 1s ease-in-out, height 1s ease-in-out, top 1s ease-in-out, left 1s ease-in-out;
+}
+
+#header-logo {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 } 
