@@ -25,20 +25,30 @@ body {
 }
 
 header {
+  max-width: 1200px;
+  margin: 0 auto;
   width: 100%;
-  padding: 0;
+  padding: 1rem 2rem 1rem 2rem;
   background: var(--navy);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   position: relative;
   z-index: 2;
 }
 
+.logo {
+  height: 200px;
+  width: auto;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
 nav {
   display: flex;
-  gap: 2rem;
-  margin-top: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
 }
 nav a {
   color: var(--neon);
